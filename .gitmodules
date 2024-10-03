@@ -1,0 +1,4 @@
+[submodule "v4l2_camera"]
+	path = v4l2_camera
+	url = https://gitlab.com/boldhearts/ros2_v4l2_camera.git
+	branch = humble
