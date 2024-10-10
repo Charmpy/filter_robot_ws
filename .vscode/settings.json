@@ -1,3 +1,17 @@
 {
-    "cmake.sourceDirectory": "/home/pentagon/filter_robot_ws/src/low_level_base_controller"
+    "cmake.sourceDirectory": "/home/pentagon/filter_robot_ws/src/low_level_base_controller",
+    "python.autoComplete.extraPaths": [
+        "/home/pentagon/filter_robot_ws/build/py_cli",
+        "/home/pentagon/filter_robot_ws/install/py_cli/lib/python3.10/site-packages",
+        "/home/pentagon/filter_robot_ws/install/req_res_str_service/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/pentagon/filter_robot_ws/build/py_cli",
+        "/home/pentagon/filter_robot_ws/install/py_cli/lib/python3.10/site-packages",
+        "/home/pentagon/filter_robot_ws/install/req_res_str_service/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
 }
