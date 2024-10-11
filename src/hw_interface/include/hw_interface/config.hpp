@@ -7,7 +7,7 @@
 struct Config
 {
   std::string device = "/dev/ttyUSB0";
-  int baud_rate = 115200;
+  int baud_rate = 500000;
   int timeout = 5000;
 };
 

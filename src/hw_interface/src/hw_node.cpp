@@ -8,7 +8,7 @@ using namespace std::chrono_literals;
 
 HWNode::HWNode () : Node("hw_node"), count_(0)
     {
-      ard_.setup("/dev/ttyAMA1");
+      ard_.setup("/dev/serial0"); ///dev/ttyAMA1
       subscription_ = this->create_subscription<geometry_msgs::msg::Twist>(
       "/cmd_vel", 100, std::bind(&HWNode::topic_callback, this, _1));
           // ard_.setup("/dev/ttyAMA1");

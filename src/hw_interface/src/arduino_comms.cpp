@@ -63,7 +63,7 @@ std::string ArduinoComms::sendMsg(const std::string &msg_to_send, bool print_out
 {
     std::lock_guard<std::mutex> lock(uart_mutex);
     serial_conn_.write(msg_to_send);
-    std::string response = serial_conn_.readline(65536, "_");
+    std::string response = serial_conn_.readline(65536, "\r");
 
 
     if (print_output)
@@ -72,5 +72,5 @@ std::string ArduinoComms::sendMsg(const std::string &msg_to_send, bool print_out
         RCLCPP_INFO_STREAM(logger_,"Received: " << response);
     }
 
-    return response;
+    return response.substr(0, s.length());
 }
