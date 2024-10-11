@@ -5,6 +5,19 @@
 #include <cstring>
 #include <string>
 
+
+
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
+#include <vector>
+
+#include <fcntl.h>      // Для работы с файлами
+#include <termios.h>    // Для настройки UART
+#include <unistd.h> 
+
+
 #include "config.hpp"
 
 class ArduinoComms
@@ -29,7 +42,9 @@ public:
   std::string sendMsg(const std::string &msg_to_send, bool print_output = false);
 
   
-
+  std::mutex uart_mutex;                 // Мьютекс для защиты UART ресурса
+  std::condition_variable async_cv;      // Условная переменная для асинхронной отправки
+  bool async_ready; 
 
 private:
   serial::Serial serial_conn_;  ///< Underlying serial connection 

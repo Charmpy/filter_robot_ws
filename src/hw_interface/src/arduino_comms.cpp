@@ -13,6 +13,7 @@ void ArduinoComms::setup(const std::string serial_device)
     serial_conn_.setTimeout(tt); // This should be inline except setTimeout takes a reference and so needs a variable
     serial_conn_.open();
     // serial_conn_.(serial_device, baud_rate, serial::Timeout::simpleTimeout(timeout_ms));
+    async_ready = false;
 
 }
 
@@ -51,6 +52,8 @@ void ArduinoComms::readOdometry(
 
 void ArduinoComms::setSpeed(int vel_x, int vel_y, int vel_w)
 {
+    std::unique_lock<std::mutex> lock(uart_mutex, std::defer_lock);
+    async_cv.wait(cv_lock, [] { return async_ready; });
     std::ostringstream strs;
     strs << "G " << vel_x << " " << vel_y << " " << vel_w << " _";
     std::string response = sendMsg(strs.str());
@@ -58,6 +61,7 @@ void ArduinoComms::setSpeed(int vel_x, int vel_y, int vel_w)
 
 std::string ArduinoComms::sendMsg(const std::string &msg_to_send, bool print_output)
 {
+    std::lock_guard<std::mutex> lock(uart_mutex);
     serial_conn_.write(msg_to_send);
     std::string response = serial_conn_.readline(65536, "_");
 
