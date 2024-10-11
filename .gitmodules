@@ -1,3 +1,6 @@
 [submodule "src/serial"]
 	path = src/serial
 	url = https://github.com/wjwwood/serial.git
+[submodule "serial"]
+	path = serial
+	url = https://github.com/joshnewans/serial
